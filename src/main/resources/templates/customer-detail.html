@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Details</title>
+</head>
+<body>
+
+<h1>Branch Details</h1>
+
+<!-- Check if the branch exists -->
+<div th:if="${customer.isPresent()}">
+    <p>ID: <span th:text="${customer.get().id}"></span></p>
+    <p>Full Name: <span th:text="${customer.get().fullName}"></span></p>
+    <p>Password: <span th:text="${customer.get().password}"></span></p>
+    <p>Phone Number: <span th:text="${customer.get().phoneNumber}"></span></p>
+    <p>Branch Name: <span th:text="${customer.get().branch.name}"></span></p>
+</div>

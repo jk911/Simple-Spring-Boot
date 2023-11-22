@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers List</title>
+</head>
+<body>
+    <h1>Customers List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Detail</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate through the branches and display each branch -->
+        <tr th:each="cu : ${cus}">
+            <td th:text="${cu.id}"></td>
+            <td th:text="${cu.fullName}"></td>
+            <td><a th:href="@{/admin/customers/{id}(id=${cu.id})}">See</a></td>
+            <td><a th:href="@{/admin/customers/delete/{id}(id=${cu.id})}">Choose</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Add New Customer</h2>
+    <form th:action="@{/admin/customers}" th:object="${newCustomer}" method="post">
+        <label for="fullName">Customer Name:</label>
+        <input type="text" id="fullName" name="fullName" th:field="*{fullName}" required>
+
+        <label for="password">Password:</label>
+        <input type="text" id="password" name="password" th:field="*{password}" required>
+
+        <label for="phoneNumber">Phone Number:</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required>
+
+        <!-- Add other fields as needed -->
+
+        <button type="submit">Add Customer</button>
+    </form>
+</body>
+</html>

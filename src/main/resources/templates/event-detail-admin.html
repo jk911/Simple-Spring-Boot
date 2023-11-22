@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Details</title>
+</head>
+<body>
+    <h1>Event Details</h1>
+
+    <!-- Check if the branch exists -->
+    <div th:if="${event.isPresent()}">
+        <p>ID: <span th:text="${event.get().id}"></span></p>
+        <p>Event Name: <span th:text="${event.get().eventName}"></span></p>
+        <p>Event Start Time: <span th:text="${event.get().startTime}"></span></p>
+        <p>Address: <span th:text="${event.get().address}"></span></p>
+        <p>Description: <span th:text="${event.get().description}"></span></p>
+        <p>Open For Ticket: <span th:text="${event.get().openForTicket}"></span></p>
+        <p>Branch Name: <span th:text="${event.get().branch.name}"></span></p>
+    </div>
+
+    <!-- Display a message if the branch doesn't exist -->
+    <div th:unless="${event.isPresent()}">
+        <p>Event not found.</p>
+    </div>
+</body>
+</html>

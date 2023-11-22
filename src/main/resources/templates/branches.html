@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Branches List</title>
+</head>
+<body>
+    <h1>Branches List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Detail</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+            <!-- Iterate through the branches and display each branch -->
+            <tr th:each="br : ${brs}">
+                <td th:text="${br.id}"></td>
+                <td th:text="${br.name}"></td>
+                <td><a th:href="@{/admin/branches/{id}(id=${br.id})}">See</a></td>
+                <td><a th:href="@{/admin/branches/delete/{id}(id=${br.id})}">Choose</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Add New Branch</h2>
+    <form th:action="@{/admin/branches}" th:object="${newBranch}" method="post">
+        <label for="branchName">Branch Name:</label>
+        <input type="text" id="branchName" name="name" th:field="*{name}" required>
+
+        <!-- Add other fields as needed -->
+
+        <button type="submit">Add Branch</button>
+    </form>
+</body>
+</html>

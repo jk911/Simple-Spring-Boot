@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Events List</title>
+</head>
+<body>
+<h1>Events List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Category</th>
+        <th>Start time</th>
+        <th>Event Name</th>
+        <th>Detail</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate through the branches and display each branch -->
+    <tr th:each="event : ${events}">
+        <td th:text="${event.id}"></td>
+        <td th:text="${event.category}"></td>
+        <td th:text="${event.startTime}"></td>
+        <td th:text="${event.eventName}"></td>
+        <td><a th:href="@{/customer/events/{id}(id=${event.id})}">See</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

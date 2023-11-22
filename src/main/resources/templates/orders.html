@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders List</title>
+</head>
+<body>
+<h1>Orders List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Price</th>
+        <th>Branch</th>
+        <th>Customer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate through the branches and display each branch -->
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.totalPrice}"></td>
+        <td th:text="${order.branch.name}"></td>
+        <td th:text="${order.customer.fullName}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

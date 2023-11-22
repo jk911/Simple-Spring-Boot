@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Tickets List</title>
+</head>
+<body>
+  <h1>Tickets List</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Ticket Name</th>
+      <th>Price</th>
+      <th>Event Name</th>
+      <th>Branch</th>
+      <th>Customer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate through the branches and display each branch -->
+    <tr th:each="ticket : ${tickets}">
+      <td th:text="${ticket.id}"></td>
+      <td th:text="${ticket.ticketNumber}"></td>
+      <td th:text="${ticket.price}"></td>
+      <td th:text="${ticket.event.eventName}"></td>
+      <td th:text="${ticket.branch.name}"></td>
+      <td th:text="${ticket.customer.fullName}"></td>
+    </tr>
+    </tbody>
+  </table>
+</body>
+</html>
