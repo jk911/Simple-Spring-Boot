@@ -3,70 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <title>Events List</title>
+
+    <!-- Link tới Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <style>
-        table, th, td, form{
+        body {
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        table, th, td {
             border: 1px solid black;
+            border-collapse: collapse;
+            width: 80%;
+            margin-bottom: 20px;
         }
-        form{
-            width: 20%;
-            padding: 5px;
+        th, td {
+            padding: 10px;
+            text-align: left;
         }
-        input{
-            float: right;
+        a {
+            display: inline-block;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+        form {
             width: 50%;
+            margin-top: 20px;
+        }
+        input {
+            width: 70%;
+            margin-top: 5px;
+        }
+        button {
+            width: 70%;
+            margin-top: 10px;
         }
     </style>
 </head>
-<body>
-    <h1>Events List</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Category</th>
-            <th>Start time</th>
-            <th>Event Name</th>
-            <th>Detail</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- Iterate through the branches and display each branch -->
-        <tr th:each="event : ${events}">
-            <td th:text="${event.id}"></td>
-            <td th:text="${event.category}"></td>
-            <td th:text="${event.startTime}"></td>
-            <td th:text="${event.eventName}"></td>
-            <td><a th:href="@{/admin/events/{id}(id=${event.id})}">See</a></td>
-            <td><a th:href="@{/admin/events/delete/{id}(id=${event.id})}">Choose</a></td>
-        </tr>
-        </tbody>
-    </table>
-    <hr>
-    <h2>Add New Event</h2>
-    <form th:action="@{/admin/events}" th:object="${newEvent}" method="post">
-        <p>
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" th:field="*{address}" required>
-        </p>
-        <p>
-            <label for="category">Category:</label>
-            <input type="text" id="category" name="category" th:field="*{category}" required>
-        </p>
-        <p>
-            <label for="description">Description:</label>
-            <input type="text" id="description" name="description" th:field="*{description}" required>
-        </p>
-        <p>
-            <label for="startTime">Start Time:</label>
-            <input type="datetime-local" id="startTime" name="startTime" th:field="*{startTime}" required>
-        </p>
-        <p>
-            <label for="eventName">Event Name:</label>
-            <input type="text" id="eventName" name="eventName" th:field="*{eventName}" required>
-        </p>
-        <!-- Add other fields as needed -->
-        <button type="submit">Add Event</button>
-    </form>
+<body class="container">
+
+<h1 class="display-4">Events List</h1>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th>ID</th>
+        <th>Category</th>
+        <th>Start time</th>
+        <th>Event Name</th>
+        <th>Detail</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate through the branches and display each branch -->
+    <tr th:each="event : ${events}">
+        <td th:text="${event.id}"></td>
+        <td th:text="${event.category}"></td>
+        <td th:text="${event.startTime}"></td>
+        <td th:text="${event.eventName}"></td>
+        <td><a class="btn btn-info" th:href="@{/admin/events/{id}(id=${event.id})}">See</a></td>
+        <td><a class="btn btn-danger" th:href="@{/admin/events/delete/{id}(id=${event.id})}">Choose</a></td>
+    </tr>
+    </tbody>
+</table>
+<hr>
+<h2 class="mt-4">Add New Event</h2>
+<form class="form-group" th:action="@{/admin/events}" th:object="${newEvent}" method="post">
+    <div class="form-group">
+        <label for="address">Address:</label>
+        <input class="form-control" type="text" id="address" name="address" th:field="*{address}" required>
+    </div>
+    <div class="form-group">
+        <label for="category">Category:</label>
+        <input class="form-control" type="text" id="category" name="category" th:field="*{category}" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <input class="form-control" type="text" id="description" name="description" th:field="*{description}" required>
+    </div>
+    <div class="form-group">
+        <label for="startTime">Start Time:</label>
+        <input class="form-control" type="datetime-local" id="startTime" name="startTime" th:field="*{startTime}" required>
+    </div>
+    <div class="form-group">
+        <label for="eventName">Event Name:</label>
+        <input class="form-control" type="text" id="eventName" name="eventName" th:field="*{eventName}" required>
+    </div>
+    <!-- Add other fields as needed -->
+    <button type="submit" class="btn btn-success">Add Event</button>
+</form>
+
+<!-- Link tới Bootstrap JS và Popper.js (nếu cần thiết) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>

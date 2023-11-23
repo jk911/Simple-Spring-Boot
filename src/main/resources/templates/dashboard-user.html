@@ -3,12 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Page</title>
+
+    <!-- Link tới Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        body {
+            margin: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        a {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        span {
+            color: #007bff; /* Bootstrap's primary color */
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <h2>Welcome, <span th:text="${username}"></span>!</h2>
-    <a th:href="@{/customer/events}">Events</a>
-    <a th:href="@{/customer/tickets}">Tickets</a>
-    <a th:href="@{/customer/orders}">Orders</a>
-    <a th:href="@{/customer/logout}">Logout</a>
+
+<h2 class="display-4">Welcome, <span th:text="${username}"></span>!</h2>
+
+<a class="btn btn-primary" th:href="@{/customer/events}">Events</a>
+<a class="btn btn-primary" th:href="@{/customer/tickets}">Tickets</a>
+<a class="btn btn-primary" th:href="@{/customer/orders}">Orders</a>
+<a class="btn btn-danger" th:href="@{/customer/logout}">Logout</a>
+
+<!-- Link tới Bootstrap JS và Popper.js (nếu cần thiết) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>

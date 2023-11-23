@@ -2,18 +2,53 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title>Trang Đăng Nhập</title>
+
+    <!-- Link tới Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        body {
+            margin: 20px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            width: 50%;
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 70%;
+            margin-top: 5px;
+        }
+        button {
+            width: 70%;
+            margin-top: 10px;
+        }
+    </style>
 </head>
-<body>
-    <h1>Login</h1>
-    <form th:action="@{/customer/login}" th:object="${customer}" method="post">
-        <label for="fullName">Full Name:</label>
-        <input type="text" id="fullName" name="fullName" th:field="*{fullName}" required>
+<body class="container">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" th:field="*{password}" required>
+<h1 class="display-4">Đăng Nhập</h1>
+<form class="form-group" th:action="@{/customer/login}" th:object="${customer}" method="post">
+    <label for="fullName">Họ và Tên:</label>
+    <input class="form-control" type="text" id="fullName" name="fullName" th:field="*{fullName}" required>
 
-        <button type="submit">Login</button>
-    </form>
+    <label for="password">Mật Khẩu:</label>
+    <input class="form-control" type="password" id="password" name="password" th:field="*{password}" required>
+
+    <button type="submit" class="btn btn-primary">Đăng Nhập</button>
+</form>
+
+<!-- Link tới Bootstrap JS và Popper.js (nếu cần thiết) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>

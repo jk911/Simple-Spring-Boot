@@ -3,49 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Branches List</title>
+
+    <!-- Link tới Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <style>
-        table, th, td, form{
+        table {
+            width: 80%;
+            margin-top: 20px;
+        }
+        table, th, td {
             border: 1px solid black;
+            text-align: center;
         }
-        form{
-            width: 20%;
-            padding: 5px;
+        form {
+            width: 50%;
+            margin-top: 20px;
         }
-        input{
-            float: right;
+        input {
+            width: 70%;
+            margin-top: 5px;
         }
     </style>
 </head>
-<body>
-    <h1>Branches List</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Detail</th>
-            <th>Delete</th>
-        </tr>
-        </thead>
-        <tbody>
-            <!-- Iterate through the branches and display each branch -->
-            <tr th:each="br : ${brs}">
-                <td th:text="${br.id}"></td>
-                <td th:text="${br.name}"></td>
-                <td><a th:href="@{/admin/branches/{id}(id=${br.id})}">See</a></td>
-                <td><a th:href="@{/admin/branches/delete/{id}(id=${br.id})}">Choose</a></td>
-            </tr>
-        </tbody>
-    </table>
-    <hr>
-    <h2>Add New Branch</h2>
-    <form th:action="@{/admin/branches}" th:object="${newBranch}" method="post">
-        <p>
-            <label for="branchName">Branch Name:</label>
-            <input type="text" id="branchName" name="name" th:field="*{name}" required>
-        </p>
-        <!-- Add other fields as needed -->
-        <button type="submit">Add Branch</button>
-    </form>
+<body class="container">
+
+<h1 class="mt-5">Branches List</h1>
+
+<table class="table table-bordered mt-3">
+    <thead class="thead-dark">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Detail</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate through the branches and display each branch -->
+    <tr th:each="br : ${brs}">
+        <td th:text="${br.id}"></td>
+        <td th:text="${br.name}"></td>
+        <td><a class="btn btn-info" th:href="@{/admin/branches/{id}(id=${br.id})}">See</a></td>
+        <td><a class="btn btn-danger" th:href="@{/admin/branches/delete/{id}(id=${br.id})}">Choose</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<hr>
+
+<h2 class="mt-4">Add New Branch</h2>
+<form class="form-group" th:action="@{/admin/branches}" th:object="${newBranch}" method="post">
+    <div class="form-group">
+        <label for="branchName">Branch Name:</label>
+        <input class="form-control" type="text" id="branchName" name="name" th:field="*{name}" required>
+    </div>
+    <!-- Add other fields as needed -->
+    <button type="submit" class="btn btn-success">Add Branch</button>
+</form>
+
+<!-- Link tới Bootstrap JS và Popper.js (nếu cần thiết) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

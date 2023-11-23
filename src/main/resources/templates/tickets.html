@@ -2,37 +2,60 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Tickets List</title>
+  <title>Danh Sách Vé</title>
+
+  <!-- Link tới Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   <style>
-    table, th, td{
+    body {
+      margin: 20px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 90%;
+      margin-top: 20px;
+    }
+    th, td {
       border: 1px solid black;
+      padding: 10px;
+      text-align: left;
     }
   </style>
 </head>
-<body>
-  <h1>Tickets List</h1>
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Ticket Name</th>
-      <th>Price</th>
-      <th>Event Name</th>
-      <th>Branch</th>
-      <th>Customer</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Iterate through the branches and display each branch -->
-    <tr th:each="ticket : ${tickets}">
-      <td th:text="${ticket.id}"></td>
-      <td th:text="${ticket.ticketNumber}"></td>
-      <td th:text="${ticket.price}"></td>
-      <td th:text="${ticket.event.eventName}"></td>
-      <td th:text="${ticket.branch.name}"></td>
-      <td th:text="${ticket.customer.fullName}"></td>
-    </tr>
-    </tbody>
-  </table>
+<body class="container">
+
+<h1 class="display-4">Danh Sách Vé</h1>
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th>ID</th>
+    <th>Tên Vé</th>
+    <th>Giá</th>
+    <th>Tên Sự Kiện</th>
+    <th>Chi Nhánh</th>
+    <th>Khách Hàng</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Iterate through the branches and display each branch -->
+  <tr th:each="ticket : ${tickets}">
+    <td th:text="${ticket.id}"></td>
+    <td th:text="${ticket.ticketNumber}"></td>
+    <td th:text="${ticket.price}"></td>
+    <td th:text="${ticket.event.eventName}"></td>
+    <td th:text="${ticket.branch.name}"></td>
+    <td th:text="${ticket.customer.fullName}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- Link tới Bootstrap JS và Popper.js (nếu cần thiết) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>
