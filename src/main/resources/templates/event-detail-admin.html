@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Event Details</title>
 
-    <!-- Link tới Bootstrap CSS -->
+    <!-- Link to Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <style>
@@ -14,7 +14,7 @@
         h1 {
             margin-bottom: 20px;
         }
-        div {
+        form {
             margin-top: 20px;
         }
         p {
@@ -30,25 +30,45 @@
 
 <h1 class="display-4">Event Details</h1>
 
-<!-- Check if the event exists -->
-<div th:if="${event.isPresent()}" class="card">
+<!-- Form to update event information -->
+<form th:if="${event.isPresent()}" th:action="@{/admin/events/update/{id}(id=${event.get().id})}" method="post" class="card">
     <div class="card-body">
-        <p class="card-text">ID: <span th:text="${event.get().id}"></span></p>
-        <p class="card-text">Event Name: <span th:text="${event.get().eventName}"></span></p>
-        <p class="card-text">Event Start Time: <span th:text="${event.get().startTime}"></span></p>
-        <p class="card-text">Address: <span th:text="${event.get().address}"></span></p>
-        <p class="card-text">Description: <span th:text="${event.get().description}"></span></p>
-        <p class="card-text">Open For Ticket: <span th:text="${event.get().openForTicket}"></span></p>
-        <p class="card-text">Branch Name: <span th:text="${event.get().branch.name}"></span></p>
+        <input type="hidden" name="id" th:value="${event.get().id}" />
+
+        <p class="card-text">Event ID: <span th:text="${event.get().id}"></span></p>
+
+        <label for="eventName">Event Name:</label>
+        <input type="text" id="eventName" name="eventName" th:value="${event.get().eventName}" class="form-control" required>
+
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" th:value="${event.get().category}" class="form-control" required>
+
+        <label for="startTime">Event Start Time:</label>
+        <input type="text" id="startTime" name="startTime" th:value="${event.get().startTime}" class="form-control" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" th:value="${event.get().address}" class="form-control" required>
+
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" th:value="${event.get().description}" class="form-control" required>
+
+        <label for="openForTicket">Open For Ticket:</label>
+        <input type="text" id="openForTicket" name="openForTicket" th:value="${event.get().openForTicket}" class="form-control" required>
+
+        <label for="branchName">Branch Name:</label>
+        <input type="text" id="branchName" name="branchName" th:value="${event.get().branch.name}" class="form-control" required>
+
+        <!-- Button to perform the PUT request -->
+        <button type="submit" class="btn btn-primary">Update Event</button>
     </div>
-</div>
+</form>
 
 <!-- Display a message if the event doesn't exist -->
 <div th:unless="${event.isPresent()}" class="alert alert-warning mt-3" role="alert">
     Event not found.
 </div>
 
-<!-- Link tới Bootstrap JS và Popper.js (nếu cần thiết) -->
+<!-- Link to Bootstrap JS and Popper.js (if necessary) -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

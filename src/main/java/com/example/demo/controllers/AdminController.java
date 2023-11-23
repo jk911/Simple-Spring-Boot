@@ -79,6 +79,17 @@ public class AdminController {
         model.addAttribute("event", event);
         return "event-detail-admin";
     }
+
+    @PostMapping("/events/update/{eventId}")
+    public String updateEvent(@PathVariable String eventId, @ModelAttribute Event event) {
+        event.setId(eventId);
+        event.setCreatedAt(LocalDateTime.now(zoneId));
+        event.setOpenForTicket(true);
+        Branch branch = branchService.getFirstBranchId();
+        event.setBranch(branch);
+        eventService.updateEventById(event);
+        return "redirect:/admin/events";
+    }
     @GetMapping("/events/delete/{eventId}")
     public String deleteEvent(@PathVariable String eventId) {
         eventService.deleteEventById(eventId);

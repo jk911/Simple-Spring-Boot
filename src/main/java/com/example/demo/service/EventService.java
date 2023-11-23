@@ -28,6 +28,10 @@ public class EventService {
     public void deleteEventById(String eventId){
         eventRepository.deleteById(eventId);
     }
+
+    public void updateEventById(Event event){
+        eventRepository.save(event);
+    }
     public Event getById(String eventId){
         return eventRepository.getById(eventId);
     }
