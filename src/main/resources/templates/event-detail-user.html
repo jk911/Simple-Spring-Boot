@@ -3,10 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Event Details</title>
+    <style>
+        table, th, td, form{
+            border: 1px solid black;
+        }
+        form{
+            width: 20%;
+            padding: 5px;
+        }
+        input, select{
+            float: right;
+        }
+    </style>
 </head>
 <body>
     <h1>Event Details</h1>
-
     <!-- Check if the branch exists -->
     <div th:if="${event.isPresent()}">
         <p>ID: <span th:text="${event.get().id}"></span></p>
@@ -22,18 +33,21 @@
     <div th:unless="${event.isPresent()}">
         <p>Event not found.</p>
     </div>
+    <hr>
     <h2>Order Ticket</h2>
 <!--    <form th:action="@{/events/{eventId}(eventId=${eventId})}" th:object="${newOrder}" method="post">-->
     <form th:action="@{/customer/events/{eventId}(eventId=${eventId})}" method="post">
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" name="quantity" value="" required>
-
-        <label for="type">Type Ticket:</label>
-        <select name="type" id="type">
-            <option th:each="t : ${typeTicket}" th:value="${t.id}" th:text="${t.description}"></option>
-        </select>
+        <p>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" value="" required>
+        </p>
+        <p>
+            <label for="type">Type Ticket:</label>
+            <select name="type" id="type">
+                <option th:each="t : ${typeTicket}" th:value="${t.id}" th:text="${t.description + ' - ' + t.price}"></option>
+            </select>
+        </p>
         <!-- Add other fields as needed -->
-
         <button type="submit">Order</button>
     </form>
 </body>

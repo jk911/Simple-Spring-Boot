@@ -3,53 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>Events List</title>
+    <style>
+        table, th, td, form{
+            border: 1px solid black;
+        }
+        form{
+            width: 20%;
+            padding: 5px;
+        }
+        input{
+            float: right;
+            width: 50%;
+        }
+    </style>
 </head>
 <body>
-<h1>Events List</h1>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Category</th>
-        <th>Start time</th>
-        <th>Event Name</th>
-        <th>Detail</th>
-        <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <!-- Iterate through the branches and display each branch -->
-    <tr th:each="event : ${events}">
-        <td th:text="${event.id}"></td>
-        <td th:text="${event.category}"></td>
-        <td th:text="${event.startTime}"></td>
-        <td th:text="${event.eventName}"></td>
-        <td><a th:href="@{/admin/events/{id}(id=${event.id})}">See</a></td>
-        <td><a th:href="@{/admin/events/delete/{id}(id=${event.id})}">Choose</a></td>
-    </tr>
-    </tbody>
-</table>
-
-<h2>Add New Event</h2>
-<form th:action="@{/admin/events}" th:object="${newEvent}" method="post">
-    <label for="address">Address:</label>
-    <input type="text" id="address" name="address" th:field="*{address}" required>
-
-    <label for="category">Category:</label>
-    <input type="text" id="category" name="category" th:field="*{category}" required>
-
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="description" th:field="*{description}" required>
-
-    <label for="startTime">Start Time:</label>
-    <input type="datetime-local" id="startTime" name="startTime" th:field="*{startTime}" required>
-
-    <label for="eventName">Event Name:</label>
-    <input type="text" id="eventName" name="eventName" th:field="*{eventName}" required>
-
-    <!-- Add other fields as needed -->
-
-    <button type="submit">Add Event</button>
-</form>
+    <h1>Events List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Category</th>
+            <th>Start time</th>
+            <th>Event Name</th>
+            <th>Detail</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterate through the branches and display each branch -->
+        <tr th:each="event : ${events}">
+            <td th:text="${event.id}"></td>
+            <td th:text="${event.category}"></td>
+            <td th:text="${event.startTime}"></td>
+            <td th:text="${event.eventName}"></td>
+            <td><a th:href="@{/admin/events/{id}(id=${event.id})}">See</a></td>
+            <td><a th:href="@{/admin/events/delete/{id}(id=${event.id})}">Choose</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <h2>Add New Event</h2>
+    <form th:action="@{/admin/events}" th:object="${newEvent}" method="post">
+        <p>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" th:field="*{address}" required>
+        </p>
+        <p>
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" th:field="*{category}" required>
+        </p>
+        <p>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" th:field="*{description}" required>
+        </p>
+        <p>
+            <label for="startTime">Start Time:</label>
+            <input type="datetime-local" id="startTime" name="startTime" th:field="*{startTime}" required>
+        </p>
+        <p>
+            <label for="eventName">Event Name:</label>
+            <input type="text" id="eventName" name="eventName" th:field="*{eventName}" required>
+        </p>
+        <!-- Add other fields as needed -->
+        <button type="submit">Add Event</button>
+    </form>
 </body>
 </html>

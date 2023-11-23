@@ -3,6 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Customers List</title>
+    <style>
+        table, th, td, form{
+            border: 1px solid black;
+        }
+        form{
+            width: 20%;
+            padding: 5px;
+        }
+        input{
+            float: right;
+        }
+    </style>
 </head>
 <body>
     <h1>Customers List</h1>
@@ -25,20 +37,22 @@
         </tr>
         </tbody>
     </table>
-
+    <hr>
     <h2>Add New Customer</h2>
     <form th:action="@{/admin/customers}" th:object="${newCustomer}" method="post">
-        <label for="fullName">Customer Name:</label>
-        <input type="text" id="fullName" name="fullName" th:field="*{fullName}" required>
-
-        <label for="password">Password:</label>
-        <input type="text" id="password" name="password" th:field="*{password}" required>
-
-        <label for="phoneNumber">Phone Number:</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required>
-
+        <p>
+            <label for="fullName">Customer Name:</label>
+            <input type="text" id="fullName" name="fullName" th:field="*{fullName}" required>
+        </p>
+        <p>
+            <label for="password">Password:</label>
+            <input type="text" id="password" name="password" th:field="*{password}" required>
+        </p>
+        <p>
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required>
+        </p>
         <!-- Add other fields as needed -->
-
         <button type="submit">Add Customer</button>
     </form>
 </body>

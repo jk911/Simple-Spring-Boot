@@ -3,6 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Branches List</title>
+    <style>
+        table, th, td, form{
+            border: 1px solid black;
+        }
+        form{
+            width: 20%;
+            padding: 5px;
+        }
+        input{
+            float: right;
+        }
+    </style>
 </head>
 <body>
     <h1>Branches List</h1>
@@ -25,14 +37,14 @@
             </tr>
         </tbody>
     </table>
-
+    <hr>
     <h2>Add New Branch</h2>
     <form th:action="@{/admin/branches}" th:object="${newBranch}" method="post">
-        <label for="branchName">Branch Name:</label>
-        <input type="text" id="branchName" name="name" th:field="*{name}" required>
-
+        <p>
+            <label for="branchName">Branch Name:</label>
+            <input type="text" id="branchName" name="name" th:field="*{name}" required>
+        </p>
         <!-- Add other fields as needed -->
-
         <button type="submit">Add Branch</button>
     </form>
 </body>
